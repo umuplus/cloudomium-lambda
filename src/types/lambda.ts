@@ -1,6 +1,5 @@
-import { Context } from 'aws-lambda'
-
-export interface LambdaContext extends Context {
+export interface LambdaContext extends Record<string, any> {
+    callbackWaitsForEmptyEventLoop?: boolean
     claims?: Record<string, any>
     language: string
 }

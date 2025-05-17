@@ -3,7 +3,6 @@ import s3FetchMiddleware from '../src/middlewares/s3-fetch'
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { gzipSync } from 'node:zlib'
-import { S3BucketEvent } from '../src/types/s3'
 
 class S3Command {
     constructor(protected params: Record<string, any>) {
@@ -34,7 +33,7 @@ test('s3 fetch middleware simple', async () => {
             },
         ],
     }
-    await middleware(request as S3BucketEvent, null)
+    await middleware(request, null)
     assert.equal(request.Records[0].s3.object.body.val, 'test')
 })
 
@@ -51,7 +50,7 @@ test('s3 fetch middleware base64 only', async () => {
             },
         ],
     }
-    await middleware(request as S3BucketEvent, null)
+    await middleware(request, null)
     assert.equal(request.Records[0].s3.object.body.val, 'test')
 })
 
@@ -69,7 +68,7 @@ test('s3 fetch middleware with compressed', async () => {
             },
         ],
     }
-    await middleware(request as S3BucketEvent, null)
+    await middleware(request, null)
     assert.equal(request.Records[0].s3.object.body.val, 'test')
 })
 
@@ -86,6 +85,6 @@ test('s3 fetch middleware base64 error', async () => {
             },
         ],
     }
-    await middleware(request as S3BucketEvent, null)
+    await middleware(request, null)
     assert.ok(request.Records[0].error instanceof Error)
 })

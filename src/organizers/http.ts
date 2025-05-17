@@ -1,4 +1,3 @@
-import { ApiGatewayProxyEvent, ApiGatewayProxyEventV2, ApiGatewayProxyResult, ApiGatewayProxyResultV2 } from '../types/http'
 import { CloudomiumLambda } from './_lambda'
 import { ErrorHandler, Exception, Handler } from '../types/middleware'
 import { LambdaContext } from '../types/lambda'
@@ -49,11 +48,7 @@ export class HttpNotAcceptableException extends HttpException {
  * @template CC - Context type
  * @example new HttpLambda<ApiGatewayProxyEvent, ApiGatewayProxyResult>()
  */
-export class HttpLambda<
-    CE = ApiGatewayProxyEvent | ApiGatewayProxyEventV2,
-    CR = ApiGatewayProxyResult | ApiGatewayProxyResultV2,
-    CC = LambdaContext,
-> extends CloudomiumLambda<CE, CC, CR> {
+export class HttpLambda<CE = any, CR = any, CC = LambdaContext> extends CloudomiumLambda<CE, CC, CR> {
     constructor() {
         super()
 

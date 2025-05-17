@@ -9,13 +9,9 @@ import s3FetchMiddleware from './middlewares/s3-fetch'
 
 export * from './organizers/http'
 
-export * from './types/http'
 export * from './types/jwt'
-export * from './types/kinesis'
 export * from './types/lambda'
 export * from './types/middleware'
-export * from './types/s3'
-export * from './types/sqs'
 
 export {
     authMiddleware,
